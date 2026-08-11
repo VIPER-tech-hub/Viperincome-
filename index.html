@@ -1,225 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ViperIncome</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #0b0f0d;
-      color: #ffffff;
-      min-height: 100vh;
-    }
-
-    header {
-      background: #111713;
-      padding: 18px 20px;
-      border-bottom: 1px solid #26302a;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-      color: #39e58c;
-    }
-
-    .tagline {
-      color: #aab5ae;
-      font-size: 13px;
-      margin-top: 4px;
-    }
-
-    main {
-      max-width: 700px;
-      margin: auto;
-      padding: 25px 18px 50px;
-    }
-
-    .welcome {
-      background: linear-gradient(135deg, #12351f, #102018);
-      border: 1px solid #235c38;
-      border-radius: 18px;
-      padding: 24px;
-      margin-bottom: 25px;
-    }
-
-    .welcome h1 {
-      font-size: 27px;
-      margin-bottom: 8px;
-    }
-
-    .welcome p {
-      color: #b8c4bd;
-      line-height: 1.5;
-    }
-
-    .balance {
-      margin-top: 18px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #39e58c;
-    }
-
-    .section-title {
-      font-size: 21px;
-      margin-bottom: 15px;
-    }
-
-    .task {
-      background: #121814;
-      border: 1px solid #29342d;
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 14px;
-    }
-
-    .task h3 {
-      font-size: 18px;
-      margin-bottom: 7px;
-    }
-
-    .task p {
-      color: #aeb9b2;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 14px;
-    }
-
-    .reward {
-      color: #39e58c;
-      font-weight: bold;
-      margin-bottom: 13px;
-    }
-
-    button {
-      width: 100%;
-      border: none;
-      border-radius: 10px;
-      padding: 13px;
-      background: #20c878;
-      color: #061009;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:active {
-      transform: scale(0.98);
-    }
-
-    .status {
-      text-align: center;
-      color: #8f9b94;
-      margin-top: 20px;
-      font-size: 13px;
-    }
-
-    footer {
-      text-align: center;
-      color: #66736b;
-      font-size: 12px;
-      padding: 25px;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ViperIncome - Earn Rewards</title>
+<style>
+:root{--bg:#071021;--card:#17285f;--card2:#14275c;--line:rgba(250,204,21,.28);--blue:#2f67ed;--blue2:#2563eb;--text:#f7f9ff;--muted:#a8c8f5;--green:#25d07b;--yellow:#ffd20a;--red:#ff4b45}
+*{box-sizing:border-box;margin:0;padding:0}html{background:#000}body{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:82px}button,input,select{font:inherit}button{cursor:pointer}.page{display:none;max-width:720px;margin:0 auto;padding:22px 28px 110px}.page.active{display:block}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 0 20px}.brand{font-weight:900;font-size:31px;letter-spacing:-1.2px;white-space:nowrap}.brand .v{color:#3f86ff}.brand .snake{font-size:31px}.currency{background:#20283a;border-radius:32px;padding:10px 20px;font-size:18px;line-height:1.05;min-width:150px}.hamb{font-size:43px;line-height:1;background:none;border:0;color:#fff;width:52px}.menu-wrap{position:relative}.drawer{display:none;position:absolute;right:0;top:58px;width:280px;background:#111b32;border:2px solid #23458b;border-radius:26px;padding:20px 10px;z-index:60;box-shadow:0 18px 45px rgba(0,0,0,.45)}.drawer.open{display:block}.drawer button{display:block;width:100%;text-align:left;border:0;background:none;color:#fff;padding:14px 18px;font-size:20px;border-radius:12px}.drawer button:hover{background:#17285f}.drawer .logout{color:#ff4b45}
+.hero{background:linear-gradient(135deg,#2547ad,#2846ae);border-radius:38px;padding:32px 38px;margin:12px 0 20px;display:flex;justify-content:space-between;align-items:flex-start;min-height:180px}.hero .label{font-size:25px;color:#c4d9fb}.hero .amount{font-size:60px;font-weight:900;line-height:1.05;margin-top:10px}.welcome{font-size:24px;color:#c4d9fb;max-width:160px;line-height:1.15}.progress{background:#182b65;border:2px solid var(--line);border-radius:28px;padding:24px 28px;margin:14px 0}.progress-head{display:flex;justify-content:space-between;color:#a8c8f5;font-size:21px;margin-bottom:14px}.bar{height:19px;background:#0b1734;border-radius:20px;overflow:hidden}.bar>i{display:block;height:100%;background:#2f67ed;border-radius:20px;width:0}
+.summary{background:#192b66;border:2px solid var(--line);border-radius:30px;padding:25px 32px;margin:14px 0;display:flex;align-items:center;gap:20px}.summary .icon{font-size:48px;min-width:58px;text-align:center}.summary .copy{flex:1}.summary h3{font-size:26px;color:#9bc9ff;margin-bottom:5px}.summary p{font-size:21px;color:#b6d3f8}.summary .value{font-size:42px;font-weight:900;color:var(--yellow)}.summary.withdraw .value{color:var(--red)}
+.section-card{background:#192b66;border-radius:34px;padding:28px;margin:20px 0}.section-title{font-size:30px;margin-bottom:22px}.empty{text-align:center;color:#a8c8f5;font-size:22px;padding:35px}.history-item{display:flex;justify-content:space-between;gap:12px;padding:15px 0;border-bottom:1px solid rgba(167,200,245,.16)}.history-item:last-child{border-bottom:0}.small{font-size:14px;color:#9fc4ef}.positive{color:var(--yellow)}.negative{color:var(--red)}
+.task{background:#111c32;border:2px solid rgba(250,204,21,.15);border-radius:30px;padding:28px;margin:18px 0}.task h3{font-size:28px;margin-bottom:10px}.task p{font-size:21px;color:#b9d3f4;line-height:1.45;margin-bottom:20px}.reward{font-size:25px;font-weight:900;color:#24d57a;margin-bottom:18px}.btn{width:100%;border:0;border-radius:16px;background:#2f67ed;color:#fff;padding:17px 20px;font-weight:800;font-size:22px}.btn.green{background:#25d07b;color:#071021}.btn.gray{background:#34435f}.btn.red{background:#dc2626}
+.form-card{background:#14275c;border-radius:32px;padding:28px;margin-top:20px}.input{width:100%;padding:17px 20px;margin:9px 0;background:#0e1934;border:2px solid #244a96;border-radius:16px;color:#fff;outline:none;font-size:19px}.input:focus{border-color:#3f86ff}.form-card .btn{margin-top:12px}.back{display:inline-block;color:#4b8bff;font-size:21px;margin-bottom:10px;border:0;background:none}
+.auth{min-height:calc(100vh - 82px);display:flex;flex-direction:column;justify-content:center;max-width:520px}.auth-brand{text-align:center;margin-bottom:28px}.auth-brand .brand{font-size:42px}.auth-brand p{color:#a8c8f5;font-size:20px;margin-top:8px}.auth-card{background:#14275c;border-radius:30px;padding:30px;border:1px solid rgba(59,130,246,.25)}.auth-card h2{font-size:32px;margin-bottom:20px;text-align:center}.link-btn{background:none;border:0;color:#4c8cff;font-size:18px;margin-top:18px;width:100%}
+.ref-box{background:#192b66;border-radius:30px;padding:28px;margin:16px 0}.ref-box h3{font-size:30px;margin-bottom:18px}.ref-input{background:#0e1934;border:2px solid #244a96;border-radius:16px;padding:17px;color:#fff;width:100%;font-size:17px}.steps{background:#192b66;border-radius:30px;padding:28px;margin-top:20px}.step{background:#1c3477;border-radius:20px;padding:24px;font-size:20px;line-height:1.55;margin:14px 0}.step strong{color:var(--yellow)}
+.ref-stat{display:flex;justify-content:space-between;align-items:center;background:#192b66;border:2px solid var(--line);border-radius:30px;padding:25px 30px;margin:16px 0}.ref-stat .icon{font-size:48px}.ref-stat h3{color:#9bc9ff;font-size:25px}.ref-stat p{color:#b6d3f8;font-size:19px}.ref-stat .value{font-size:38px;font-weight:900;color:var(--yellow)}
+.bottom{position:fixed;left:0;right:0;bottom:0;background:#0d172b;border-top:2px solid #173873;display:none;grid-template-columns:repeat(4,1fr);z-index:50;padding:7px 0 calc(7px + env(safe-area-inset-bottom))}.bottom.show{display:grid}.bottom button{background:none;border:0;color:#7d899e;font-size:15px}.bottom button.active{color:#4d8cff}.bottom b{display:block;font-size:35px;line-height:1.05;margin-bottom:2px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;padding:25px}.modal.show{display:block}.modal .box{max-width:440px;margin:22vh auto;background:#14275c;border-radius:24px;padding:25px}.modal p{font-size:20px;line-height:1.45}.modal .btn{margin-top:20px}
+@media(max-width:520px){.page{padding-left:28px;padding-right:28px}.brand{font-size:27px}.currency{min-width:130px;font-size:17px;padding:9px 16px}.hamb{font-size:40px}.hero{padding:28px 38px;border-radius:34px}.hero .label{font-size:23px}.hero .amount{font-size:53px}.welcome{font-size:22px}.summary{padding:23px 25px}.summary h3{font-size:24px}.summary p{font-size:19px}.summary .value{font-size:38px}.drawer{width:270px}.page{padding-bottom:100px}}
+</style>
 </head>
-
 <body>
 
-  <header>
-    <div class="logo">ViperIncome</div>
-    <div class="tagline">Complete tasks. Earn rewards.</div>
-  </header>
+<div id="login" class="page active auth">
+  <div class="auth-brand"><div class="brand"><span class="snake">🐍</span><span class="v">Viper</span>Income</div><p>Complete tasks. Earn rewards.</p></div>
+  <div class="auth-card"><h2>Login</h2>
+    <input class="input" id="loginEmail" type="email" placeholder="Email">
+    <input class="input" id="loginPassword" type="password" placeholder="Password">
+    <button class="btn" onclick="login()">Login</button>
+    <button class="btn green" onclick="show('signup')">Create Account</button>
+    <button class="link-btn" onclick="show('admin')">Admin login</button>
+  </div>
+</div>
 
-  <main>
+<div id="signup" class="page auth">
+  <button class="back" onclick="show('login')">‹ Back</button>
+  <div class="auth-card"><h2>Create Account</h2>
+    <input class="input" id="name" placeholder="Full name">
+    <input class="input" id="email" type="email" placeholder="Email">
+    <input class="input" id="password" type="password" placeholder="Password (8+ characters)">
+    <input class="input" id="referral" placeholder="Referral email (optional)">
+    <button class="btn green" onclick="signup()">Create Account</button>
+  </div>
+</div>
 
-    <section class="welcome">
-      <h1>Welcome to ViperIncome 🐍</h1>
-      <p>
-        Complete simple tasks and earn rewards.
-        More earning opportunities will be added soon.
-      </p>
+<div id="dashboard" class="page">
+  <header class="topbar"><div class="brand"><span class="snake">🐍</span><span class="v">Viper</span>Income</div><div class="currency">🌍 NG |<br>NGN</div><div class="menu-wrap"><button class="hamb" onclick="toggleMenu()">☰</button><div id="drawer" class="drawer">
+    <button onclick="show('refer');closeMenu()">📣 &nbsp; Refer Friends</button>
+    <button onclick="show('tasks');closeMenu()">📋 &nbsp; Tasks</button>
+    <button onclick="show('history');closeMenu()">📊 &nbsp; Earnings History</button>
+    <button onclick="show('referrals');closeMenu()">👥 &nbsp; My Referrals</button>
+    <button onclick="show('withdraw');closeMenu()">💰 &nbsp; Withdraw</button>
+    <button class="logout" onclick="logout();closeMenu()">🚪 &nbsp; Logout</button>
+  </div></div></header>
+  <div class="hero"><div><div class="label">Total Balance</div><div class="amount" id="balance">₦0.00</div></div><div class="welcome">Welcome<br><span id="firstName">User</span></div></div>
+  <div class="progress"><div class="progress-head"><span>Withdrawal Progress</span><span id="progressText">₦0 / ₦20,000</span></div><div class="bar"><i id="progressBar"></i></div></div>
+  <div class="summary"><div class="icon">📋</div><div class="copy"><h3>Task Earnings</h3><p>Total earned from tasks</p></div><div class="value" id="taskTotal">₦0</div></div>
+  <div class="summary"><div class="icon">🔗</div><div class="copy"><h3>Referral Earnings</h3><p>Total earned from referrals</p></div><div class="value" id="refTotal">₦0</div></div>
+  <div class="summary withdraw"><div class="icon">💰</div><div class="copy"><h3>Total Withdrawn</h3><p>Total amount withdrawn</p></div><div class="value" id="withdrawn">₦0</div></div>
+  <div class="section-card"><h2 class="section-title">📊 Earnings History</h2><div id="dashboardHistory"></div></div>
+  <div class="ref-stat" onclick="show('referrals')"><div class="icon">👥</div><div style="flex:1;margin-left:18px"><h3>My Referrals</h3><p>View your referral details</p></div><div style="font-size:35px;color:#4d8cff">›</div></div>
+  <div class="ref-stat" onclick="show('refer')"><div class="icon">📣</div><div style="flex:1;margin-left:18px"><h3>Refer Friends</h3><p>Invite friends and earn ₦500 each</p></div><div style="font-size:35px;color:#4d8cff">›</div></div>
+</div>
 
-      <div class="balance">
-        Balance: ₦0.00
-      </div>
-    </section>
+<div id="tasks" class="page"><button class="back" onclick="show('dashboard')">‹ Back</button><h1>Tasks</h1>
+  <div class="task"><h3>📺 Watch Video</h3><p>Watch the required video and complete this task.</p><div class="reward">Reward: ₦50</div><button class="btn green" onclick="completeTask('task1')">Start Task</button></div>
+  <div class="task"><h3>📝 Complete Survey</h3><p>Answer a few simple questions and complete the survey.</p><div class="reward">Reward: ₦100</div><button class="btn green" onclick="completeTask('task2')">Start Task</button></div>
+  <div class="task"><h3>📱 Download App</h3><p>Download and open the required application to complete this task.</p><div class="reward">Reward: ₦200</div><button class="btn green" onclick="completeTask('task3')">Start Task</button></div>
+</div>
 
-    <h2 class="section-title">Available Tasks</h2>
+<div id="history" class="page"><button class="back" onclick="show('dashboard')">‹ Back</button><h1>📊 Earnings History</h1><div class="section-card" id="historyList"></div></div>
 
-    <div class="task">
-      <h3>🎬 Watch Video</h3>
-      <p>
-        Watch the required video to complete this task.
-      </p>
-      <div class="reward">Reward: ₦50</div>
-      <button onclick="startTask('task1')">
-        Start Task
-      </button>
-    </div>
+<div id="referrals" class="page"><button class="back" onclick="show('dashboard')">‹ Back</button><h1>My Referrals</h1>
+  <div class="ref-stat"><div class="icon">👥</div><div style="flex:1;margin-left:18px"><h3>Total Referrals</h3><p>Number of people you referred</p></div><div class="value" id="refCount">0</div></div>
+  <div class="ref-stat"><div class="icon">💵</div><div style="flex:1;margin-left:18px"><h3>Total Referral Earnings</h3><p>Amount earned from referrals</p></div><div class="value" id="refEarnings">₦0</div></div>
+  <div class="section-card"><h2 class="section-title">🕘 Recent Referrals</h2><div id="recentRefs" class="empty">No referrals yet</div></div>
+</div>
 
-    <div class="task">
-      <h3>📝 Complete Survey</h3>
-      <p>
-        Answer a few simple questions and complete the survey.
-      </p>
-      <div class="reward">Reward: ₦100</div>
-      <button onclick="startTask('task2')">
-        Start Task
-      </button>
-    </div>
+<div id="refer" class="page"><button class="back" onclick="show('dashboard')">‹ Back</button><h1>Refer Friends &amp; Earn</h1>
+  <div class="ref-box"><h3>Your Referral Link</h3><input class="ref-input" id="refLink" readonly><button class="btn" onclick="copyReferral()" style="margin-top:16px">Copy Link</button></div>
+  <div class="steps"><div class="step">1. Tap the Copy button and share your referral link. You earn <strong>₦500</strong> when each invited friend successfully registers.</div><div class="step">2. When your earning reaches <strong>₦20000</strong> you can withdraw your funds.</div></div>
+</div>
 
-    <div class="task">
-      <h3>📱 Download App</h3>
-      <p>
-        Download and open the required application to complete this task.
-      </p>
-      <div class="reward">Reward: ₦200</div>
-      <button onclick="startTask('task3')">
-        Start Task
-      </button>
-    </div>
+<div id="withdraw" class="page"><button class="back" onclick="show('dashboard')">‹ Back</button><h1>Request Withdrawal</h1>
+  <div class="form-card"><h2 style="font-size:32px;margin-bottom:16px">Balance: <span id="withdrawBalance" style="color:#4d8cff">₦0</span></h2>
+    <input class="input" id="withdrawAmount" type="number" placeholder="Minimum ₦20000">
+    <select class="input" id="method"><option>Bank Transfer</option><option>Airtime</option><option>USDT</option></select>
+    <input class="input" id="details" placeholder="Bank Account / Phone / USDT Address">
+    <button class="btn" onclick="withdraw()">Submit Request</button>
+  </div>
+</div>
 
-    <div class="status" id="status">
-      ViperIncome is loading...
-    </div>
+<div id="admin" class="page auth"><button class="back" onclick="show('login')">‹ Back</button><div class="auth-card"><h2>🔐 Admin Login</h2><input class="input" id="adminEmail" type="email" placeholder="Admin email"><input class="input" id="adminPassword" type="password" placeholder="Admin password"><button class="btn" onclick="adminLogin()">Login</button></div></div>
+<div id="adminPanel" class="page"><h1>🛡️ Admin Panel</h1><div class="summary"><div class="copy"><h3>Users</h3></div><div class="value" id="statUsers">0</div></div><div class="summary"><div class="copy"><h3>Platform Balance</h3></div><div class="value" id="statBalance">₦0</div></div><div class="summary"><div class="copy"><h3>Task Earnings</h3></div><div class="value" id="statTasks">₦0</div></div><div class="summary"><div class="copy"><h3>Withdrawn</h3></div><div class="value" id="statWithdrawn">₦0</div></div><div class="section-card"><input class="input" id="search" placeholder="Search users" oninput="loadUsers()"><div id="users"></div></div><div class="section-card"><h2>Pending Withdrawals</h2><div id="withdrawals"></div></div><button class="btn red" onclick="adminLogout()">Logout</button></div>
 
-  </main>
+<div id="modal" class="modal"><div class="box"><p id="modalText"></p><button class="btn" onclick="closeModal()">OK</button></div></div>
 
-  <footer>
-    © 2026 ViperIncome. All rights reserved.
-  </footer>
+<nav id="bottom" class="bottom"><button data-page="dashboard" onclick="show('dashboard')"><b>🏠</b>Home</button><button data-page="refer" onclick="show('refer')"><b>🔗</b>Share</button><button data-page="tasks" onclick="show('tasks')"><b>📋</b>Task</button><button data-page="withdraw" onclick="show('withdraw')"><b>💰</b>Withdraw</button></nav>
 
-  <script>
-
-    function startTask(taskId) {
-
-  const status = document.getElementById("status");
-
-  if (taskId === "task1") {
-    status.textContent = "Watch Video task selected. Your task will begin soon.";
-  }
-
-  if (taskId === "task2") {
-    status.textContent = "Survey task selected. Your survey will begin soon.";
-  }
-
-  if (taskId === "task3") {
-    status.textContent = "Download App task selected. Follow the instructions to complete the task.";
-  }
-
-}
-  </script>
-
-</body>
-</html>
+<script>
+const API="/api";let token=localStorage.getItem("vi_token")||"",adminToken=sessionStorage.getItem("vi_admin_token")||"",me=null;
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]))}
+function money(n){return "₦"+Number(n||0).toLocaleString("en-NG",{minimumFractionDigits:0,maximumFractionDigits:2})}
+function show(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");closeMenu();const bottom=document.getElementById("bottom");if(["dashboard","tasks","refer","withdraw"].includes(id)&&token){bottom.classList.add("show");document.querySelectorAll(".bottom button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));}else bottom.classList.remove("show");if(["dashboard","history","refer","referrals","withdraw"].includes(id))loadMe();if(id==="adminPanel")loadAdmin();window.scrollTo(0,0)}
+function msg(t){document.getElementById("modalText").textContent=t;document.getElementById("modal").classList.add("show")}function closeModal(){document.getElementById("modal").classList.remove("show")}
+function toggleMenu(){document.getElementById("drawer").classList.toggle("open")}function closeMenu(){document.getElementById("drawer").classList.remove("open")}
+async function api(path,opts={},admin=false){const headers={"Content-Type":"application/json",...(opts.headers||{})},t=admin?adminToken:token;if(t)headers.Authorization="Bearer "+t;const r=await fetch(API+path,{...opts,headers});const data=await r.json().catch(()=>({}));if(!r.ok)throw new Error(data.error||"Request failed");return data}
+async function signup(){try{const d=await api("/auth/signup",{method:"POST",body:JSON.stringify({name:document.getElementById("name").value,email:document.getElementById("email").value,password:document.getElementById("password").value,referralEmail:document.getElementById("referral").value})});token=d.token;localStorage.setItem("vi_token",token);show("dashboard");await loadMe();msg("Account created successfully.")}catch(e){msg(e.message)}}
+async function login(){try{const d=await api("/auth/login",{method:"POST",body:JSON.stringify({email:document.getElementById("loginEmail").value,password:document.getElementById("loginPassword").value})});token=d.token;localStorage.setItem("vi_token",token);show("dashboard");await loadMe()}catch(e){msg(e.message)}}
+async function loadMe(){if(!token){show("login");return}try{const d=await api("/me");me=d.user;const tx=d.transactions||[];let task=0,ref=0,w=0;tx.forEach(x=>{if(x.type==="task"&&Number(x.amount)>0)task+=Number(x.amount);if(x.type==="referral"&&Number(x.amount)>0)ref+=Number(x.amount);if(x.type==="withdraw"&&Number(x.amount)<0)w+=Math.abs(Number(x.amount))});document.getElementById("balance").textContent=money(me.balance);document.getElementById("firstName").textContent=esc(me.name.split(" ")[0]);document.getElementById("taskTotal").textContent=money(task);document.getElementById("refTotal").textContent=money(ref);document.getElementById("withdrawn").textContent=money(w);document.getElementById("withdrawBalance").textContent=money(me.balance);document.getElementById("progressText").textContent=money(me.balance)+" / ₦20,000";document.getElementById("progressBar").style.width=Math.min(100,(Number(me.balance||0)/20000)*100)+"%";document.getElementById("refLink").value=location.origin+location.pathname+"?ref="+encodeURIComponent(me.email);const render=tx.length?tx.map(x=>`<div class="history-item"><div><b>${esc(x.title)}</b><div class="small">${esc(new Date(x.created_at).toLocaleString())}</div></div><b class="${Number(x.amount)<0?'negative':'positive'}">${Number(x.amount)>0?'+':''}${money(x.amount)}</b></div>`).join(""):"<div class='empty'>No activity yet</div>";document.getElementById("historyList").innerHTML=render;document.getElementById("dashboardHistory").innerHTML=tx.length?render:"<div class='empty'>No activity yet</div>";document.getElementById("refEarnings").textContent=money(ref);document.getElementById("refCount").textContent=Number(d.referralCount||0);document.getElementById("recentRefs").innerHTML=(d.referrals&&d.referrals.length)?d.referrals.map(r=>`<div class="history-item"><div><b>${esc(r.name||r.email||"Referral")}</b><div class="small">${esc(r.email||"")}</div></div></div>`).join(""):"<div class='empty'>No referrals yet</div>"}catch(e){token="";localStorage.removeItem("vi_token");show("login");msg(e.message)}}
+async function completeTask(taskId){try{const d=await api("/tasks/complete",{method:"POST",body:JSON.stringify({taskId})});msg("Task completed: +"+money(d.reward));await loadMe()}catch(e){msg(e.message)}}
+async function withdraw(){try{const amount=Number(document.getElementById("withdrawAmount").value),method=document.getElementById("method").value,details=document.getElementById("details").value;const d=await api("/withdrawals",{method:"POST",body:JSON.stringify({amount,method,details})});msg(d.message);document.getElementById("withdrawAmount").value="";document.getElementById("details").value="";await loadMe()}catch(e){msg(e.message)}}
+async function copyReferral(){try{await navigator.clipboard.writeText(document.getElementById("refLink").value);msg("Referral link copied.")}catch{msg("Copy failed. Long-press the link and copy it.")}}
+function logout(){token="";localStorage.removeItem("vi_token");show("login")}
+async function adminLogin(){try{const d=await api("/auth/admin-login",{method:"POST",body:JSON.stringify({email:document.getElementById("adminEmail").value,password:document.getElementById("adminPassword").value})});adminToken=d.token;sessionStorage.setItem("vi_admin_token",adminToken);show("adminPanel")}catch(e){msg(e.message)}}function adminLogout(){adminToken="";sessionStorage.removeItem("vi_admin_token");show("login")}
+async function loadAdmin(){if(!adminToken){show("admin");return}try{const s=await api("/admin/stats",{},true);document.getElementById("statUsers").textContent=s.totalUsers;document.getElementById("statBalance").textContent=money(s.totalBalance);document.getElementById("statTasks").textContent=money(s.taskEarnings);document.getElementById("statWithdrawn").textContent=money(s.withdrawn);await loadUsers();await loadWithdrawals()}catch(e){adminLogout();msg(e.message)}}
+async function loadUsers(){try{const q=encodeURIComponent(document.getElementById("search").value||"");const d=await api("/admin/users?search="+q,{},true);document.getElementById("users").innerHTML=d.users.length?d.users.map(u=>`<div class="history-item"><div><b>${esc(u.name)}</b><div class="small">${esc(u.email)}</div></div><div><b class="positive">${money(u.balance)}</b><br><button class="btn green" style="width:auto;padding:6px 9px;font-size:11px" onclick="adjust(${u.id},'add')">+Balance</button> <button class="btn red" style="width:auto;padding:6px 9px;font-size:11px" onclick="adjust(${u.id},'remove')">-Balance</button></div></div>`).join(""):"<div class='empty'>No users.</div>"}catch(e){msg(e.message)}}
+async function adjust(id,action){const a=Number(prompt(action==="add"?"Amount to add:":"Amount to remove:"));if(!a||a<=0)return;try{await api(`/admin/users/${id}/${action}-balance`,{method:"POST",body:JSON.stringify({amount:a})},true);await loadAdmin();msg("Balance updated.")}catch(e){msg(e.message)}}
+async function loadWithdrawals(){try{const d=await api("/admin/withdrawals",{},true);document.getElementById("withdrawals").innerHTML=d.withdrawals.filter(w=>w.status==="pending").map(w=>`<div class="history-item"><div><b>${esc(w.name)}</b><div class="small">${esc(w.email)}<br>${esc(w.method)}: ${esc(w.details)}</div></div><div><b class="positive">${money(w.amount)}</b><br><button class="btn green" style="width:auto;padding:6px" onclick="withdrawAction(${w.id},'approve')">Approve</button> <button class="btn red" style="width:auto;padding:6px" onclick="withdrawAction(${w.id},'reject')">Reject</button></div></div>`).join("")||"<div class='empty'>No pending withdrawals.</div>"}catch(e){msg(e.message)}}
+async function withdrawAction(id,a){try{await api(`/admin/withdrawals/${id}/${a}`,{method:"POST"},true);await loadAdmin();msg("Withdrawal updated.")}catch(e){msg(e.message)}}
+if(adminToken)show("adminPanel");else if(token)show("dashboard");else show("login");
+</script>
+</body></html>
