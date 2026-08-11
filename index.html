@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ViperIncome</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0f0d;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #111713;
+      padding: 18px 20px;
+      border-bottom: 1px solid #26302a;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      color: #39e58c;
+    }
+
+    .tagline {
+      color: #aab5ae;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    main {
+      max-width: 700px;
+      margin: auto;
+      padding: 25px 18px 50px;
+    }
+
+    .welcome {
+      background: linear-gradient(135deg, #12351f, #102018);
+      border: 1px solid #235c38;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 25px;
+    }
+
+    .welcome h1 {
+      font-size: 27px;
+      margin-bottom: 8px;
+    }
+
+    .welcome p {
+      color: #b8c4bd;
+      line-height: 1.5;
+    }
+
+    .balance {
+      margin-top: 18px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #39e58c;
+    }
+
+    .section-title {
+      font-size: 21px;
+      margin-bottom: 15px;
+    }
+
+    .task {
+      background: #121814;
+      border: 1px solid #29342d;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .task h3 {
+      font-size: 18px;
+      margin-bottom: 7px;
+    }
+
+    .task p {
+      color: #aeb9b2;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .reward {
+      color: #39e58c;
+      font-weight: bold;
+      margin-bottom: 13px;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 13px;
+      background: #20c878;
+      color: #061009;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .status {
+      text-align: center;
+      color: #8f9b94;
+      margin-top: 20px;
+      font-size: 13px;
+    }
+
+    footer {
+      text-align: center;
+      color: #66736b;
+      font-size: 12px;
+      padding: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">ViperIncome</div>
+    <div class="tagline">Complete tasks. Earn rewards.</div>
+  </header>
+
+  <main>
+
+    <section class="welcome">
+      <h1>Welcome to ViperIncome 🐍</h1>
+      <p>
+        Complete simple tasks and earn rewards.
+        More earning opportunities will be added soon.
+      </p>
+
+      <div class="balance">
+        Balance: ₦0.00
+      </div>
+    </section>
+
+    <h2 class="section-title">Available Tasks</h2>
+
+    <div class="task">
+      <h3>🎬 Watch Video</h3>
+      <p>
+        Watch the required video to complete this task.
+      </p>
+      <div class="reward">Reward: ₦50</div>
+      <button onclick="startTask('task1')">
+        Start Task
+      </button>
+    </div>
+
+    <div class="task">
+      <h3>📝 Complete Survey</h3>
+      <p>
+        Answer a few simple questions and complete the survey.
+      </p>
+      <div class="reward">Reward: ₦100</div>
+      <button onclick="startTask('task2')">
+        Start Task
+      </button>
+    </div>
+
+    <div class="task">
+      <h3>📱 Download App</h3>
+      <p>
+        Download and open the required application to complete this task.
+      </p>
+      <div class="reward">Reward: ₦200</div>
+      <button onclick="startTask('task3')">
+        Start Task
+      </button>
+    </div>
+
+    <div class="status" id="status">
+      ViperIncome is loading...
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 ViperIncome. All rights reserved.
+  </footer>
+
+  <script>
+
+    function startTask(taskId) {
+
+  const status = document.getElementById("status");
+
+  if (taskId === "task1") {
+    status.textContent = "Watch Video task selected. Your task will begin soon.";
+  }
+
+  if (taskId === "task2") {
+    status.textContent = "Survey task selected. Your survey will begin soon.";
+  }
+
+  if (taskId === "task3") {
+    status.textContent = "Download App task selected. Follow the instructions to complete the task.";
+  }
+
+}
+  </script>
+
+</body>
+</html>
